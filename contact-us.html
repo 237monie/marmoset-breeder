@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us — Canopy Hollow</title>
+  <meta name="description" content="Questions about our available babies or our marmosets? Get in touch by phone, email, WhatsApp or the inquiry form.">
+  <meta name="theme-color" content="#23382a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contact" data-header="solid">
+
+  <div id="site-header"></div>
+
+  <main class="contact-split">
+    <aside class="contact-media">
+      <div class="frame"><img data-img="images/photo_2026-10-02_19-20-30.jpg" alt="A marmoset looking toward the camera" fetchpriority="high"></div>
+      <div class="media-quote"><span class="eyebrow" style="color:var(--gold-soft)">Canopy Hollow</span><p>Every great match begins with a simple hello.</p></div>
+    </aside>
+
+    <div class="contact-body">
+      <div class="hero-content">
+        <span class="eyebrow">Contact Us</span>
+        <h1>Let's Talk Monkey</h1>
+        <p class="lead">Have questions about our available babies or want to learn more about our marmosets? Get in touch with us.</p>
+        <div class="btn-row"><a class="btn btn-whatsapp" id="wa-cta" href="#" target="_blank" rel="noopener"><span data-icon="whatsapp"></span> Chat on WhatsApp</a></div>
+      </div>
+
+      <div class="contact-cards" id="contact-cards"></div>
+      <div class="contact-social-row"><span>Follow along</span><div class="socials" id="contact-socials"></div></div>
+
+      <form class="form-card" id="inquiry-form" novalidate>
+        <span class="eyebrow">Inquiry Form</span>
+        <h2>Send Us a Message</h2>
+        <p style="color:var(--muted);margin:0">Tell us a little about yourself and which baby you're interested in. We'll reply personally.</p>
+        <div class="form-grid">
+          <div class="field"><label for="f-name">Full Name</label><input id="f-name" name="name" autocomplete="name" required><span class="err">Please enter your name.</span></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required><span class="err">Please enter a valid email.</span></div>
+          <div class="field"><label for="f-phone">Phone Number <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="field"><label for="f-loc">Location <span class="opt">(optional)</span></label><input id="f-loc" name="location" autocomplete="address-level2" placeholder="City, State / Country"></div>
+          <div class="field full"><label for="f-baby">Baby You're Interested In</label><select id="f-baby" name="baby"></select></div>
+          <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required placeholder="Tell us about your home, your experience and any questions you have."></textarea><span class="err">Please write a short message.</span></div>
+        </div>
+        <div class="form-foot"><button class="btn btn-primary" type="submit">Send Inquiry</button></div>
+        <div class="form-status" role="status" aria-live="polite"></div>
+      </form>
+
+      <div class="notice">
+        <span data-icon="info"></span>
+        <p style="margin:0"><strong>Please note:</strong> availability, requirements and ownership rules for marmosets vary by country, state and local area. Before inquiring, prospective owners should check and comply with the regulations that apply where they live.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/site-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canopy Hollow — Marmoset Nursery</title>
+  <meta name="description" content="A small, family-run marmoset nursery. Meet our marmosets, discover their personalities and see the babies currently looking for their new homes.">
+  <meta name="theme-color" content="#23382a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home" data-header="transparent">
+
+  <div id="site-header"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-media"><img data-img="images/hero.jpg" alt="Close-up of a marmoset" fetchpriority="high"></div>
+      <div class="wrap hero-content">
+        <span class="eyebrow">Family-Run Marmoset Nursery</span>
+        <h1>Raising Little Companions <em>with care</em></h1>
+        <p>Meet our marmosets, discover their personalities, and learn more about the babies currently looking for their new homes.</p>
+        <div class="btn-row">
+          <a class="btn btn-light" href="available-babies.html">View Available Babies <span data-icon="arrow"></span></a>
+          <a class="btn btn-ghost" href="our-monkeys.html">Meet Our Monkeys</a>
+        </div>
+      </div>
+      <div class="scroll-cue">Scroll</div>
+    </section>
+
+    <!-- WELCOME -->
+    <section class="section">
+      <div class="wrap intro-grid">
+        <div class="intro-media reveal">
+          <div class="frame frame-main"><img data-img="images/photo_2026-10-02_19-20-30 (3).jpg" alt="One of our marmosets" loading="lazy"></div>
+          <div class="frame frame-small"><img data-img="images/photo_2026-10-02_20-01-10.jpg" alt="Marmoset baby" loading="lazy"></div>
+          <div class="badge-seal" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><defs><path id="seal" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+              <text font-family="Manrope, sans-serif" font-size="9" font-weight="700" letter-spacing="2.4" fill="currentColor"><textPath href="#seal" textLength="272">RAISED WITH CARE • RAISED WITH LOVE •</textPath></text></svg>
+            <span class="seal-center" data-icon="heart"></span>
+          </div>
+        </div>
+
+        <div class="reveal reveal-d1">
+          <span class="eyebrow">Welcome</span>
+          <h2>Welcome to Our <em class="accent">Monkey Family</em></h2>
+          <p class="lead">Marmosets are curious, social and full of personality. Caring for them is a big part of our everyday life, and we want every baby to grow up healthy, confident and comfortable around people.</p>
+          <p>We spend our days feeding, playing with and watching over our monkeys. When a baby is ready for a new home, we take our time getting to know each family, because a good match matters more to us than a quick placement.</p>
+
+          <div class="values">
+            <div class="value"><span class="value-icon" data-icon="heart"></span><div><h4>Attentive Care</h4><p>Daily, hands-on attention for every monkey.</p></div></div>
+            <div class="value"><span class="value-icon" data-icon="users"></span><div><h4>Socialization</h4><p>Gentle, everyday interaction from an early age.</p></div></div>
+            <div class="value"><span class="value-icon" data-icon="sparkle"></span><div><h4>Enrichment</h4><p>Play, climbing and foraging to keep busy minds busy.</p></div></div>
+            <div class="value"><span class="value-icon" data-icon="home"></span><div><h4>Thoughtful Homes</h4><p>Honest conversations before any placement.</p></div></div>
+          </div>
+          <a class="btn btn-primary" href="about-us.html">Our Story <span data-icon="arrow"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET OUR BABIES -->
+    <section class="section section-cream">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Currently Available</span>
+            <h2>Meet Our Babies</h2>
+          </div>
+          <a class="btn btn-outline" href="available-babies.html">View Babies <span data-icon="arrow"></span></a>
+        </div>
+        <div class="baby-grid featured" id="featured-babies"></div>
+      </div>
+    </section>
+
+    <!-- LIFE WITH OUR MONKEYS -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Everyday Moments</span>
+            <h2>Life With <em class="accent">Our Monkeys</em></h2>
+          </div>
+          <p class="lead">A glimpse into our monkeys' days: play, rest, mealtimes and the small moments in between.</p>
+        </div>
+        <div class="life-grid" id="life-grid"></div>
+        <div class="center" style="margin-top:44px">
+          <a class="btn btn-outline" href="our-monkeys.html">See the Full Gallery <span data-icon="arrow"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-band">
+      <div class="hero-media"><img data-img="images/photo_2026-10-02_20-00-37 (2).jpg" alt="" loading="lazy"></div>
+      <div class="wrap reveal">
+        <span class="eyebrow">Let's Talk</span>
+        <h2>Ready to meet your new little companion?</h2>
+        <p>We're happy to answer your questions, tell you more about our babies and talk through what living with a marmoset involves.</p>
+        <a class="btn btn-gold" href="contact-us.html">Contact Us <span data-icon="arrow"></span></a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/site-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
