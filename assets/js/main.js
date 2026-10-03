@@ -734,45 +734,37 @@
       const btn = $("button[type=submit]", form);
       status.className = "form-status";
 
-      if (has(C.formEndpoint)) {
-        btn.disabled = true; btn.textContent = "Sending…";
-        try {
-          const fd = new FormData(form);
-          if (checkout) {
-            fd.delete("baby");
-            fd.set("name", d.name);
-            fd.set("address", d.location);
-            fd.set("reservation", cartLines().join("\n"));
-            fd.set("subtotal", cartTotal(cartItems())); if (has(DEPOSIT)) fd.set("deposit", DEPOSIT);
-          } else fd.set("baby", babyLabel);
-          const r = await fetch(C.formEndpoint, { method: "POST", body: fd, headers: { Accept: "application/json" } });
-          if (!r.ok) throw new Error();
-          form.reset();
-          if (checkout) saveCart([]);
-          status.className = "form-status ok";
-          status.textContent = checkout
-            ? "Thank you! Your reservation request has been sent — we'll contact you shortly to confirm."
-            : "Thank you! Your inquiry has been sent — we'll be in touch soon.";
-        } catch {
-          status.className = "form-status bad";
-          status.textContent = `Sorry, something went wrong. Please email us directly at ${C.email}.`;
-        } finally { btn.disabled = false; btn.textContent = submitLabel; }
+      if (!has(C.formEndpoint)) {
+        status.className = "form-status bad";
+        status.textContent = "The form is not configured to send. Please contact us directly by email.";
         return;
       }
-
-      const body = [
-        `Name: ${d.name}`, `Email: ${d.email}`, `Phone: ${d.phone || "-"}`, `${checkout ? "Address" : "Location"}: ${d.location || "-"}`,
-        ...(checkout
-          ? ["", "Reservation request:", ...cartLines(), `Subtotal: ${cartTotal(cartItems())}`, ...(has(DEPOSIT) ? [`Deposit: ${DEPOSIT}`] : [])]
-          : [`Interested in: ${d.baby ? babyLabel : "-"}`]),
-        ...(d.message ? ["", d.message] : []),
-      ].join("\n");
-      const subject = checkout
-        ? `Reservation request — ${cartItems().map((b) => b.name).join(", ")} — from ${d.name}`
-        : `Inquiry${d.baby && d.baby !== "general" ? " — " + babyLabel.split(" — ")[0] : ""} from ${d.name}`;
-      window.location.href = `mailto:${C.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      status.className = "form-status ok";
-      status.textContent = `Your email app should open with your ${checkout ? "reservation request" : "inquiry"} ready to send. If it doesn't, email us at ${C.email}.`;
+      btn.disabled = true; btn.textContent = "Sending…";
+      try {
+        const fd = new FormData(form);
+        if (checkout) {
+          fd.delete("baby");
+          fd.set("name", d.name);
+          fd.set("address", d.location);
+          fd.set("reservation", cartLines().join("\n"));
+          fd.set("subtotal", cartTotal(cartItems())); if (has(DEPOSIT)) fd.set("deposit", DEPOSIT);
+        } else fd.set("baby", babyLabel);
+        fd.set("_subject", checkout
+          ? `Reservation request — ${cartItems().map((b) => b.name).join(", ")}`
+          : `Inquiry from ${d.name}`);
+        fd.set("_replyto", d.email);
+        const r = await fetch(C.formEndpoint, { method: "POST", body: fd, headers: { Accept: "application/json" } });
+        if (!r.ok) throw new Error();
+        form.reset();
+        if (checkout) saveCart([]);
+        status.className = "form-status ok";
+        status.textContent = checkout
+          ? "Thank you! Your reservation request has been sent — we'll contact you shortly to confirm."
+          : "Thank you! Your inquiry has been sent — we'll be in touch soon.";
+      } catch {
+        status.className = "form-status bad";
+        status.textContent = `Sorry, your information could not be sent. Please try again or email us at ${C.email}.`;
+      } finally { btn.disabled = false; btn.textContent = submitLabel; }
     });
   }
 

@@ -17,9 +17,9 @@ Photos live in `images/`.
 
 ## Cart and checkout
 
-Visitors can add available babies to a cart. The cart is stored in their browser. At checkout they enter their contact details and address, and the request is emailed to the breeder.
+Visitors can add available babies to a cart. The cart is stored in their browser. At checkout they enter their contact details and address, and the reservation request and submitted information are emailed to the breeder using FormSubmit.
 
-To receive requests directly instead of through the visitor's email app, set `contact.formEndpoint` in `site-data.js` to a form service endpoint, for example Formspree.
+The FormSubmit AJAX endpoint is configured as `contact.formEndpoint` in `assets/js/site-data.js` and sends both inquiries and reservation requests directly to the configured contact email; it does not open the visitor's email app. FormSubmit may require the recipient to confirm the first submission before delivery is enabled. If sending fails, the form shows an error so the visitor can try again or contact the breeder directly. To use another form service, replace `contact.formEndpoint` with that service's AJAX endpoint.
 
 ## Structure
 

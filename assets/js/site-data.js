@@ -34,10 +34,8 @@ window.SITE = {
       tiktok: "https://tiktok.com/",
       youtube: "",                        // leave empty to hide
     },
-    // Optional: paste a Formspree / Getform / Basin endpoint to receive form
-    // submissions by email. If left empty, the form opens the visitor's
-    // email app with the inquiry pre-filled.
-    formEndpoint: "",
+    // FormSubmit sends inquiries and checkout requests to this email address.
+    formEndpoint: "https://formsubmit.co/ajax/jonesjohnpauljr48@gmail.com",
   },
 
   /* ---------- Prices (applied automatically from each baby's sex) ---------- */
