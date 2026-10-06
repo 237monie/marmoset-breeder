@@ -287,7 +287,7 @@
     return "$" + sum.toLocaleString("en-US") + (unknown ? " + TBC" : "");
   };
   const DEPOSIT = (S.pricing || {}).deposit;
-  const depositRow = () => has(DEPOSIT) ? `<div class="cart-total cart-deposit"><span>Deposit</span><strong>${esc(DEPOSIT)}</strong></div>` : "";
+  const depositRow = () => has(DEPOSIT) ? `<div class="cart-total cart-deposit"><span>Indicative Deposit</span><strong>${esc(DEPOSIT)}</strong></div>` : "";
   const cartBtn = (b, cls = "btn-primary") =>
     `<button type="button" class="btn ${cls} cart-btn" data-cart-add="${esc(b.id)}">${I.bag}<span>Add to Cart</span></button>`;
 
@@ -342,7 +342,7 @@
           </li>`).join("")}
         </ul>
         <div class="cart-foot">
-          <div class="cart-total"><span>Subtotal</span><strong>${cartTotal(items)}</strong></div>${depositRow()}
+          <div class="cart-total"><span>Estimated Subtotal</span><strong>${cartTotal(items)}</strong></div>${depositRow()}
           <a class="btn btn-primary btn-block" href="contact-us.html?checkout=1">Proceed to Checkout ${I.arrow}</a>
           <a class="btn btn-outline btn-block" href="available-babies.html">Continue Browsing</a>
         </div>`
@@ -741,18 +741,39 @@
       }
       btn.disabled = true; btn.textContent = "Sending…";
       try {
-        const fd = new FormData(form);
+        const fd = new FormData();
         if (checkout) {
-          fd.delete("baby");
-          fd.set("name", d.name);
-          fd.set("address", d.location);
-          fd.set("reservation", cartLines().join("\n"));
-          fd.set("subtotal", cartTotal(cartItems())); if (has(DEPOSIT)) fd.set("deposit", DEPOSIT);
-        } else fd.set("baby", babyLabel);
+          const items = cartItems();
+          const region = isUS ? d.state : d.region;
+          fd.set("Request type", "Marmoset placement reservation — pending confirmation");
+          fd.set("Customer name", d.name);
+          fd.set("Customer email", d.email);
+          fd.set("Customer phone", d.phone);
+          fd.set("Street address", d.address);
+          fd.set("City", d.city);
+          fd.set("State / province / region", region);
+          fd.set("Postal code", d.zip);
+          fd.set("Country", d.country);
+          fd.set("Requested baby or babies", cartLines().join("\n"));
+          fd.set("Estimated subtotal", cartTotal(items));
+          if (has(DEPOSIT)) fd.set("Indicative deposit", DEPOSIT);
+          fd.set("Payment status", "No payment collected online");
+          fd.set("Notice", "This is a reservation request, not an invoice or payment demand. Availability and final pricing require breeder confirmation.");
+          if (d.message) fd.set("Customer notes", d.message);
+        } else {
+          fd.set("Request type", "General inquiry");
+          fd.set("Customer name", d.name);
+          fd.set("Customer email", d.email);
+          fd.set("Customer phone", d.phone || "Not provided");
+          fd.set("Customer location", d.location || "Not provided");
+          fd.set("Interested in", d.baby ? babyLabel : "Not specified");
+          fd.set("Message", d.message);
+        }
         fd.set("_subject", checkout
-          ? `Reservation request — ${cartItems().map((b) => b.name).join(", ")}`
+          ? `Reservation request (estimate only) — ${cartItems().map((b) => b.name).join(", ")}`
           : `Inquiry from ${d.name}`);
         fd.set("_replyto", d.email);
+        fd.set("_template", "table");
         const r = await fetch(C.formEndpoint, { method: "POST", body: fd, headers: { Accept: "application/json" } });
         if (!r.ok) throw new Error();
         form.reset();
